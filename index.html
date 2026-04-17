@@ -1,41 +1,213 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VPS 选购指南 - ClashHub</title>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VPS选购与维护完全指南，涵盖搬瓦工CN2 GIA、腾讯云、CloudCone等主流商家对比，一键BBR加速脚本、mihomo安装、Docker部署，助您找到最适合科学上网的VPS方案。">
+<meta name="keywords" content="VPS选购,搬瓦工CN2 GIA,腾讯云轻量,CloudCone,BBR加速,mihomo安装,VPS性能测试,科学上网服务器,海外VPS推荐">
+<meta name="author" content="ClashHub">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="VPS选购与维护完全指南 - ClashHub">
+<meta property="og:description" content="深度评测搬瓦工、腾讯云、CloudCone等主流VPS商家，提供一键BBR加速、mihomo安装、性能测试脚本。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>VPS选购与维护完全指南 - 搬瓦工CN2 GIA深度评测 | ClashHub</title>
 <style>
-:root{--bg:#0f172a;--c:#1e293b;--a:#38bdf8;--t:#e2e8f0;--m:#94a3b8}
-body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--t);padding:2rem}
-.l{max-width:900px;margin:0 auto}
-h1{color:var(--a);margin-bottom:.5rem}
-.s{color:var(--m);margin-bottom:2rem}
-.n{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem}
-a{color:var(--a);text-decoration:none;padding:.5rem 1rem;background:var(--c);border-radius:8px;font-size:.85rem}
-a:hover{background:#334155}
-.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:2rem 0}
-.card{background:var(--c);border-radius:12px;padding:1.5rem;border:1px solid #334155}
-.card h3{color:var(--a);margin-bottom:.5rem}
-.card p{color:var(--m);font-size:.85rem;line-height:1.5}
-pre{background:var(--c);border-radius:12px;padding:1.5rem;overflow-x:auto;border:1px solid #334155}
-code{color:#a5f3fc;font-family:monospace}
-.ft{text-align:center;color:var(--m);font-size:.8rem;margin-top:3rem;padding-top:1rem;border-top:1px solid #1e293b}
-</style></head><body>
-<div class=l>
-<h1>VPS 选购与维护指南</h1>
-<p class=s>ClashHub · 2026-04-17</p>
-<div class=n>
-<a href="https://clashhub.net">ClashHub</a>
-<a href="https://nav.clashvip.net">导航站</a>
-<a href="https://vpsvip.net">VPS推荐</a>
-<a href="https://bbs.clashhub.net">论坛</a>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0e1a;--card:#111827;--border:#1f2937;--accent:#38bdf8;--accent2:#818cf8;--text:#f1f5f9;--muted:#94a3b8;--green:#4ade80;--red:#f87171;--yellow:#fbbf24}
+body{font-family:'PingFang SC','Microsoft YaHei',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;min-height:100vh}
+.container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:3rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+h1{font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:.5rem;letter-spacing:-.5px}
+.subtitle{color:var(--muted);font-size:.95rem;margin-bottom:1.5rem}
+.tags{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.tag{background:var(--card);border:1px solid var(--border);color:var(--accent);padding:.2rem .75rem;border-radius:50px;font-size:.78rem}
+.buttons{display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.2rem;border-radius:8px;font-size:.85rem;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{background:#7dd3fc;transform:translateY(-1px)}
+.btn-secondary{background:var(--card);color:var(--accent);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--accent)}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-bottom:2rem}
+.nav-card{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.85rem;transition:all .2s}
+.nav-card:hover{border-color:var(--accent);background:#1a2332;transform:translateY(-1px)}
+section{margin-bottom:2.5rem}
+h2{font-size:1.3rem;color:var(--accent);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border)}
+h3{font-size:1.1rem;color:var(--accent2);margin:1.5rem 0 .75rem}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;background:var(--card)}
+th,td{padding:.7rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:.88rem}
+th{color:var(--accent);font-weight:600;background:#0f172a;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a2332}
+.provider-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.provider-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:all .2s}
+.provider-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 30px rgba(56,189,248,.1)}
+.provider-name{font-size:1.05rem;font-weight:600;color:var(--accent);margin-bottom:.4rem}
+.provider-tag{display:inline-block;padding:.15rem .6rem;border-radius:4px;font-size:.72rem;margin-right:.3rem}
+.tag-hot{background:rgba(251,191,36,.15);color:var(--yellow)}
+.tag-stable{background:rgba(56,189,248,.15);color:var(--accent)}
+.provider-desc{color:var(--muted);font-size:.82rem;margin-bottom:.75rem;line-height:1.5}
+.provider-speed{display:flex;align-items:center;gap:.4rem;margin:.5rem 0;font-size:.8rem;color:var(--muted)}
+.speed-bar{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.speed-fill{height:100%;background:var(--accent);border-radius:2px}
+.provider-price{font-size:1.1rem;font-weight:700;color:var(--text);margin:.5rem 0}
+.provider-price span{font-size:.75rem;color:var(--muted);font-weight:400}
+pre{background:#0d1117;border:1px solid var(--border);border-radius:12px;padding:1.25rem;overflow-x:auto;font-size:.82rem;line-height:1.7;color:#e6edf3;margin:1rem 0;position:relative}
+code{font-family:'Fira Code','Cascadia Code',monospace;font-size:.85em}
+pre code{color:#e6edf3}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:.75rem;overflow:hidden}
+.faq-q{padding:.85rem 1.25rem;font-weight:600;color:var(--accent);cursor:pointer;font-size:.92rem;display:flex;justify-content:space-between;align-items:center}
+.faq-a{padding:0 1.25rem .85rem;color:var(--muted);font-size:.85rem;line-height:1.8;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-arrow{transition:transform .2s}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin:1rem 0}
+.feature-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.feature-icon{font-size:1.8rem;margin-bottom:.5rem}
+.feature-name{font-weight:600;margin-bottom:.3rem;font-size:.9rem}
+.feature-desc{color:var(--muted);font-size:.78rem}
+footer{text-align:center;padding:2rem 0;border-top:1px solid var(--border);margin-top:3rem;color:var(--muted);font-size:.82rem}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+@media(max-width:600px){h1{font-size:1.5rem} .provider-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>🖥️ VPS 选购与维护完全指南</h1>
+  <p class="subtitle">搬瓦工CN2 GIA · 腾讯云轻量 · CloudCone · 深度横向对比 + 一键脚本工具箱</p>
+  <div class="tags">
+    <span class="tag">VPS选购</span><span class="tag">CN2 GIA</span><span class="tag">搬瓦工</span><span class="tag">BBR加速</span><span class="tag">mihomo</span><span class="tag">科学上网</span>
+  </div>
+  <div class="buttons">
+    <a href="https://clashhub.net" class="btn btn-primary">🏠 ClashHub 规则集</a>
+    <a href="https://vpsvip.net" class="btn btn-secondary">🛒 VPS商家推荐</a>
+    <a href="https://nav.clashvip.net" class="btn btn-secondary">🧭 导航站</a>
+  </div>
+</header>
+
+<nav class="nav-grid">
+  <a href="#providers" class="nav-card"><span>⚖️</span>商家对比</a>
+  <a href="#scripts" class="nav-card"><span>🛠️</span>一键脚本</a>
+  <a href="#security" class="nav-card"><span>🔒</span>安全加固</a>
+  <a href="#faq" class="nav-card"><span>❓</span>常见问题</a>
+</nav>
+
+<section id="providers">
+  <h2>⚖️ 主流 VPS 商家横向对比</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>商家</th><th>线路</th><th>推荐配置</th><th>月费</th><th>流量</th><th>支付</th><th>适合人群</th></tr></thead>
+      <tbody>
+        <tr><td><strong>搬瓦工 CN2 GIA</strong></td><td>✅ CN2 GIA</td><td>2核/2GB</td><td>~$7.5</td><td>2TB</td><td>支付宝</td><td>追求稳定首选</td></tr>
+        <tr><td><strong>腾讯云轻量</strong></td><td>✅ 国内优化</td><td>2核/4GB</td><td>~$9</td><td>2000GB</td><td>微信/支付宝</td><td>国内速度快</td></tr>
+        <tr><td><strong>CloudCone</strong></td><td>⚠️ 普通优化</td><td>1核/1GB</td><td>~$3.88</td><td>2TB</td><td>信用卡</td><td>性价比首选</td></tr>
+        <tr><td><strong>RackNerd</strong></td><td>⚠️ 普通优化</td><td>2核/3GB</td><td>~$2.3</td><td>6TB</td><td>PayPal</td><td>预算有限</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="provider-grid">
+    <div class="provider-card">
+      <div class="provider-name">🏆 搬瓦工 CN2 GIA</div>
+      <div><span class="provider-tag tag-hot">热门</span><span class="provider-tag tag-stable">线路优质</span></div>
+      <div class="provider-desc">电信用户首选，CN2 GIA 专线，晚高峰不降速，超售少，稳定性极高。</div>
+      <div class="provider-speed"><span>电信速度</span><div class="speed-bar"><div class="speed-fill" style="width:95%"></div></div><span>95%</span></div>
+      <div class="provider-price">$89.99/年 <span>≈ $7.5/月</span></div>
+      <a href="https://vpsvip.net" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem">查看详情 →</a>
+    </div>
+    <div class="provider-card">
+      <div class="provider-name">☁️ 腾讯云轻量香港</div>
+      <div><span class="provider-tag tag-stable">国内优化</span><span class="provider-tag tag-stable">中文客服</span></div>
+      <div class="provider-desc">国内访问速度极快，支持支付宝微信，30Mbps带宽略小但够用。</div>
+      <div class="provider-speed"><span>国内速度</span><div class="speed-bar"><div class="speed-fill" style="width:98%"></div></div><span>98%</span></div>
+      <div class="provider-price">¥68/月 <span>≈ $9.4/月</span></div>
+      <a href="https://nav.clashvip.net" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem">查看详情 →</a>
+    </div>
+    <div class="provider-card">
+      <div class="provider-name">💰 CloudCone SC2</div>
+      <div><span class="provider-tag tag-hot">按量计费</span><span class="provider-tag tag-stable">随时可退</span></div>
+      <div class="provider-desc">按小时计费，不想用随时销毁退款，适合临时测试或轻量使用。</div>
+      <div class="provider-speed"><span>综合速度</span><div class="speed-bar"><div class="speed-fill" style="width:70%"></div></div><span>70%</span></div>
+      <div class="provider-price">$3.88/月 <span>随时可退</span></div>
+      <a href="https://clash-for-windows.net" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem">查看详情 →</a>
+    </div>
+  </div>
+</section>
+
+<section id="scripts">
+  <h2>🛠️ 一键脚本工具箱</h2>
+  <div class="feature-grid">
+    <div class="feature-item"><div class="feature-icon">📊</div><div class="feature-name">性能测试</div><div class="feature-desc">CPU/内存/磁盘IO/带宽/流媒体解锁</div></div>
+    <div class="feature-item"><div class="feature-icon">🚀</div><div class="feature-name">BBR 加速</div><div class="feature-desc">一键开启 BBR/BBRv2/LotServer</div></div>
+    <div class="feature-item"><div class="feature-icon">🌐</div><div class="feature-name">mihomo 安装</div><div class="feature-desc">Clash Meta 一键 + Systemd 服务</div></div>
+    <div class="feature-item"><div class="feature-icon">🐳</div><div class="feature-name">Docker 环境</div><div class="feature-desc">Docker + Compose + Portainer</div></div>
+  </div>
+  <h3>📊 VPS 基准测试</h3>
+  <pre><code>wget -qO- https://raw.githubusercontent.com/{owner}/{repo}/main/bench.sh | bash</code></pre>
+  <h3>🚀 BBR 加速</h3>
+  <pre><code>wget -qO- https://raw.githubusercontent.com/{owner}/{repo}/main/bbr.sh | bash</code></pre>
+  <h3>🌐 mihomo 一键安装</h3>
+  <pre><code>wget -qO- https://raw.githubusercontent.com/{owner}/{repo}/main/clash.sh | bash
+# 安装完成后访问: http://<你的VPS-IP>:9090/ui</code></pre>
+  <h3>🐳 Docker 环境</h3>
+  <pre><code>wget -qO- https://raw.githubusercontent.com/{owner}/{repo}/main/docker.sh | bash</code></pre>
+</section>
+
+<section id="security">
+  <h2>🔒 VPS 安全加固（必做清单）</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>安全措施</th><th>操作</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td>修改SSH端口</td><td>Port 22 → Port 2222</td><td>⭐⭐⭐ 高</td></tr>
+        <tr><td>禁用密码登录</td><td>使用 SSH 密钥认证</td><td>⭐⭐⭐ 高</td></tr>
+        <tr><td>配置防火墙</td><td>ufw allow 2222/tcp</td><td>⭐⭐⭐ 高</td></tr>
+        <tr><td>安装 Fail2Ban</td><td>防止暴力破解</td><td>⭐⭐ 中</td></tr>
+        <tr><td>开启自动更新</td><td>unattended-upgrades</td><td>⭐⭐ 中</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>❓ 常见问题 FAQ</h2>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Q1: 哪个商家最适合科学上网？<span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><strong>没有标准答案</strong>，取决于你的运营商：<br>电信用户 → 搬瓦工 CN2 GIA（线路最优）<br>联通用户 → 腾讯云香港 / 搬瓦工<br>移动用户 → 腾讯云新加坡 / RackNerd<br>预算有限 → CloudCone / RackNerd</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Q2: 如何测试 VPS 线路质量？<span class="faq-arrow">▼</span></div>
+    <div class="faq-a">运行性能测试脚本：<br><code>wget -qO- https://raw.githubusercontent.com/{owner}/{repo}/main/bench.sh | bash</code></div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Q3: 被封了怎么办？<span class="faq-arrow">▼</span></div>
+    <div class="faq-a">1. 先确认是否违反商家 ToS<br>2. 大多数商家付费 $1-5 可换 IP<br>3. 部分商家换端口即可解决<br>4. 联系客服说明情况请求协助</div>
+  </div>
+  <div class="faq-item" onclick="this.classList.toggle('open')">
+    <div class="faq-q">Q4: NAT VPS 和独立服务器的区别？<span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><strong>NAT VPS</strong>：共享公网 IP，通过端口映射访问，价格低，适合纯代理用途。<br><strong>独立服务器</strong>：独立公网 IP，所有端口可用，可建站/搭服务，价格较高。</div>
+  </div>
+</section>
+
+<footer>
+  <p>由 <a href="https://clashhub.net">ClashHub</a> 维护 · 更新时间：{TODAY}</p>
+  <p style="margin-top:.5rem"><a href="https://clashhub.net">规则集</a> · <a href="https://nav.clashvip.net">导航站</a> · <a href="https://vpsvip.net">VPS推荐</a> · <a href="https://bbs.clashhub.net">论坛</a> · <a href="https://clash-for-windows.net">Clash下载</a></p>
+</footer>
 </div>
-<div class=g>
-<div class=card><h3>性能测试</h3><p>CPU/内存/磁盘IO/带宽测速/流媒体解锁</p><code>bench.sh</code></div>
-<div class=card><h3>BBR 加速</h3><p>一键开启 BBR/LotServer/锐速</p><code>bbr.sh</code></div>
-<div class=card><h3>mihomo 安装</h3><p>Clash Meta 一键安装 + Systemd 服务</p><code>clash.sh</code></div>
-<div class=card><h3>Docker 环境</h3><p>Docker + Docker Compose + Portainer</p><code>docker.sh</code></div>
-</div>
-<h2 style="color:var(--a);margin:1.5rem 0 1rem">快速使用</h2>
-<pre><code>wget -qO- https://raw.githubusercontent.com/clashhub-net/vps-guide-b9e2sg/main/bench.sh | bash
-wget -qO- https://raw.githubusercontent.com/clashhub-net/vps-guide-b9e2sg/main/bbr.sh | bash
-wget -qO- https://raw.githubusercontent.com/clashhub-net/vps-guide-b9e2sg/main/clash.sh | bash</code></pre>
-<p class=ft>ClashHub · <a href="https://clashhub.net" style="color:var(--a)">clashhub.net</a></p>
-</div></body></html>
+<script>
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.closest('.faq-item').classList.toggle('open')));
+document.querySelectorAll('pre').forEach(pre => {
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.textContent = '复制';
+  btn.style.cssText = 'position:absolute;top:.6rem;right:.6rem;background:var(--border);border:none;color:var(--muted);padding:.2rem .6rem;border-radius:4px;cursor:pointer;font-size:.72rem';
+  btn.onclick = () => {navigator.clipboard.writeText(pre.querySelector('code').innerText);btn.textContent='已复制!';setTimeout(()=>btn.textContent='复制',1500);};
+  pre.style.position = 'relative';
+  pre.appendChild(btn);
+});
+</script>
+</body>
+</html>

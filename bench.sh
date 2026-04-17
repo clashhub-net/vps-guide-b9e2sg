@@ -19,7 +19,7 @@ for node in cachefly linode-tokyo ovh-paris; do
 done
 echo ""
 echo -e "${YELLOW}[流媒体解锁]${NC}"
-for url in "https://www.netflix.com/ Netflix" "https://www.youtube.com/ YouTube" "https://www.hulu.com/ Hulu"; do
+for url in "https://www.netflix.com/ Netflix" "https://www.youtube.com/ YouTube"; do
     code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 ${url%% *})
     name=${url#* }
     [[ "$code" == "200" ]] && echo -e "${GREEN}[解锁] $name${NC}" || echo -e "${RED}[未解锁] $name${NC}"
